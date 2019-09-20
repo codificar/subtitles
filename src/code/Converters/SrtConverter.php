@@ -68,8 +68,8 @@ class SrtConverter implements ConverterContract {
     {
         $parts = explode(',', $srt_time);
 
-        $only_seconds = strtotime("1970-01-01 {$parts[0]} UTC");
-        $milliseconds = (float)('0.' . $parts[1]);
+        $only_seconds = array_key_exists(0, $parts) ? strtotime("1970-01-01 {$parts[0]} UTC") : 0;
+        $milliseconds = array_key_exists(1, $parts) ? (float)('0.' . $parts[1]) : 0;
 
         $time = $only_seconds + $milliseconds;
 
